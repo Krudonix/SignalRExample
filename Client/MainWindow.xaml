@@ -1,0 +1,76 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="SignalR Example Client"
+        WindowStartupLocation="CenterScreen"
+        Height="450"
+        Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="5"
+                   Text="User" />
+
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="5"
+                 Text="{Binding User,Mode=TwoWay}" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="5"
+                   Text="Message" />
+
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="5"
+                 Text="{Binding Message,Mode=TwoWay}" />
+
+        <Button Grid.Row="0"
+                Grid.RowSpan="1"
+                Grid.Column="2"
+                Margin="5"
+                Content="Connect"
+                Command="{Binding ConnectCommand, Mode=OneTime}" />
+
+        <Button Grid.Row="1"
+                Grid.RowSpan="1"
+                Grid.Column="2"
+                Margin="5"
+                Content="Send"
+                Command="{Binding SendCommand, Mode=OneTime}" />
+
+        <ListView Grid.Row="2"
+                  Grid.ColumnSpan="3"
+                  Margin="5"
+                  ItemsSource="{Binding ChatLog,Mode=OneTime}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="User"
+                                    DisplayMemberBinding="{Binding User, Mode=OneTime}"
+                                    Width="100" />
+                    <GridViewColumn Header="Message"
+                                    DisplayMemberBinding="{Binding Message, Mode=OneTime}"
+                                    Width="500"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
