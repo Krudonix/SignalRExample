@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Client
@@ -35,6 +36,13 @@ namespace Client
         public async Task SendMessage(string message)
         {
             await this.connection.SendAsync("ChatAll", message);
+        }
+
+        public async Task<Dictionary<string, string>> GetUsers()
+        {
+            var users = await this.connection.InvokeAsync<Dictionary<string, string>>("GetUserData");
+
+            return users;
         }
     }
 }
