@@ -37,5 +37,10 @@ namespace Server
         {
             await this.Clients.All.SendAsync("Chat", message);
         }
+
+        public Dictionary<string, string> GetUserData()
+        {
+            return Users.ToDictionary(k => k.Key, v => v.Value);
+        }
     }
 }
